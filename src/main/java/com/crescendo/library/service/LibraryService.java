@@ -1,33 +1,35 @@
 package com.crescendo.library.service;
 
 import com.crescendo.library.model.Book;
+import com.crescendo.library.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class LibraryService {
-    private Map<String, Book> db = new HashMap<>(){};
 
+    @Autowired
+    private BookRepository bookRepository;
 
-    public Collection<Book> getAllBooks() {
-        return db.values();
-    }
-
-    public Book getBookById(String id) {
-        return db.get(id);
-    }
-
-    public Book removeBookById(String id) {
-        return db.remove(id);
-    }
 
     public Book addBook(Book book) {
-        book.setId(UUID.randomUUID().toString());
-        db.put(book.getId(), book);
-        return book;
+        return bookRepository.save(book);
     }
+
+    public Iterable<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
+
+    public Optional<Book> getBookById(Long id) {
+
+        return bookRepository.findById(id);
+    }
+
+    public void removeBookById(Long id) {
+        bookRepository.deleteById(id);
+    }
+
+
 }
