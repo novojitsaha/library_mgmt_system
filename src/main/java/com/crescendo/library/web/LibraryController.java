@@ -16,16 +16,6 @@ public class LibraryController {
         this.libraryService = libraryService;
     }
 
-
-    /**
-     * Homepage endpoint
-     * @return Welcome banner text.
-     */
-    @GetMapping("/")
-    public String index() {
-        return "Welcome to Library Management System";
-    }
-
     /**
      * Add new book to the library.
      * @param book The book to be added.
