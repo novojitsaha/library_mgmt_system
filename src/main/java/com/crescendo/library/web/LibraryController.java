@@ -3,19 +3,12 @@ package com.crescendo.library.web;
 import com.crescendo.library.model.Book;
 import com.crescendo.library.service.LibraryService;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Optional;
 
 @RestController
 public class LibraryController {
-
-
 
     private final LibraryService libraryService;
 
@@ -56,19 +49,9 @@ public class LibraryController {
 
 
     @GetMapping("/books/search/id")
-    public ResponseEntity<Object> getBookById(@RequestParam Long query){
-        Optional<Book> book = libraryService.getBookById(query);
-        if(book.isPresent()){
-            return ResponseEntity.ok(book.get());
-        } else{
-            Map<String, Object> errorBody = new LinkedHashMap<>();
-            errorBody.put("status", 404);
-            errorBody.put("error", "Not Found");
-            errorBody.put("message", "Book with id " + query + " not found.");
-            errorBody.put("timestamp", new Date());
+    public ResponseEntity<Book> getBookById(@RequestParam Long query){
+        return ResponseEntity.ok(libraryService.getBookById(query));
 
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorBody);
-        }
     }
 
     /**
@@ -78,19 +61,7 @@ public class LibraryController {
      */
     @GetMapping("/books/search/title")
     public ResponseEntity<Object> getBookByTitle(@RequestParam String query){
-        Iterable<Book> bookIterable = libraryService.getBookByTitle(query);
-
-        if (bookIterable.iterator().hasNext()) {
-            return ResponseEntity.ok(bookIterable);
-        } else {
-            Map<String, Object> errorBody = new LinkedHashMap<>();
-            errorBody.put("status", 404);
-            errorBody.put("error", "Not Found");
-            errorBody.put("message", "Book with title " + query + " not found.");
-            errorBody.put("timestamp", new Date());
-
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorBody);
-        }
+        return ResponseEntity.ok(libraryService.getBookByTitle(query));
     }
 
     /**
@@ -100,19 +71,7 @@ public class LibraryController {
      */
     @GetMapping("/books/search/author")
     public ResponseEntity<Object> getBookByAuthor(@RequestParam String query){
-        Iterable<Book> bookIterable = libraryService.getBookByAuthor(query);
-
-        if (bookIterable.iterator().hasNext()) {
-            return ResponseEntity.ok(bookIterable);
-        } else {
-            Map<String, Object> errorBody = new LinkedHashMap<>();
-            errorBody.put("status", 404);
-            errorBody.put("error", "Not Found");
-            errorBody.put("message", "Book with author " + query + " not found.");
-            errorBody.put("timestamp", new Date());
-
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorBody);
-        }
+        return ResponseEntity.ok(libraryService.getBookByAuthor(query));
     }
 
     /**

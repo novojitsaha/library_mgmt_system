@@ -1,10 +1,11 @@
 package com.crescendo.library.service;
 
+import com.crescendo.library.exception.BookNotFoundException;
+import com.crescendo.library.exception.SearchTypes;
 import com.crescendo.library.model.Book;
 import com.crescendo.library.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
 
 @Service
 public class LibraryService {
@@ -24,18 +25,32 @@ public class LibraryService {
         return bookRepository.findAll();
     }
 
-    public Optional<Book> getBookById(Long id) {
-        return bookRepository.findById(id);
+    public Book getBookById(Long id) {
+        return bookRepository.findById(id)
+                .orElseThrow(() -> new BookNotFoundException(SearchTypes.ID, id));
     }
 
 
     public Iterable<Book> getBookByTitle(String title) {
-        return bookRepository.findByTitle(title);
+        Iterable<Book> books = bookRepository.findByTitle(title);
+
+        if(books.iterator().hasNext()) {
+            return books;
+        } else{
+            throw new BookNotFoundException(SearchTypes.TITLE, title);
+        }
+
     }
 
 
     public Iterable<Book> getBookByAuthor(String author) {
-        return bookRepository.findByAuthor(author);
+        Iterable<Book> books = bookRepository.findByAuthor(author);
+
+        if(books.iterator().hasNext()) {
+            return books;
+        } else{
+            throw new BookNotFoundException(SearchTypes.AUTHOR, author);
+        }
     }
 
     public void removeBookById(Long id) {
