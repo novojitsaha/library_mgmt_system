@@ -2,6 +2,9 @@ package com.crescendo.library.dto;
 
 import java.util.Date;
 
+/**
+ * Data model for error response.
+ */
 public class ErrorResponse {
 
     private int status;

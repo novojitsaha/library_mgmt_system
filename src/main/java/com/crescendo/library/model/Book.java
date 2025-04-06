@@ -23,7 +23,9 @@ public class Book {
     @NotNull(message = "The \"isAvailable\" field is required")
     private Boolean isAvailable;
 
-    // default constructor
+    /**
+     * Default constructor.
+     */
     public Book() {}
 
     public Book(Long id, String title, String author, boolean isAvailable) {
