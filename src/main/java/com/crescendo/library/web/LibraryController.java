@@ -30,14 +30,18 @@ public class LibraryController {
 
     /**
      * Returns the list of books in the database.
-     * @return A list of BookModel Objects.
+     * @return A list of Book Objects.
      */
     @GetMapping("/books")
     public Iterable<Book> getAllBooks(){
         return libraryService.getAllBooks();
     }
 
-
+    /**
+     * Search for a book by its ID.
+     * @param query The ID to be searched.
+     * @return If the book is found, it's returned with 200 OK status code. Else, 404 status code returned with book not found message.
+     */
     @GetMapping("/books/search/id")
     public ResponseEntity<Book> getBookById(@RequestParam Long query){
         return ResponseEntity.ok(libraryService.getBookById(query));
@@ -46,8 +50,8 @@ public class LibraryController {
 
     /**
      * Search for a book by its title.
-     * @param query the title of the book to be searched.
-     * @return The Book Object found in the database or 404 if no such book found.
+     * @param query The title of the book to be searched.
+     * @return A list of all the books with the query title. If no such books are found, status code 404 is returned.
      */
     @GetMapping("/books/search/title")
     public ResponseEntity<Object> getBookByTitle(@RequestParam String query){
@@ -55,9 +59,9 @@ public class LibraryController {
     }
 
     /**
-     * Search for a book by its title.
-     * @param query the title of the book to be searched.
-     * @return The Book Object found in the database or 404 if no such book found.
+     * Search for a book by its author.
+     * @param query The author of the book to be searched.
+     * @return The list of books with the query author.If no such books are found, return 404 status code.
      */
     @GetMapping("/books/search/author")
     public ResponseEntity<Object> getBookByAuthor(@RequestParam String query){
@@ -66,7 +70,7 @@ public class LibraryController {
 
     /**
      * Remove a book by its ID.
-     * @param query the ID of the book to be removed
+     * @param query The ID of the book to be removed.
      */
     @DeleteMapping("/books/delete/id")
     public void removeBookById(@RequestParam Long query){
@@ -76,7 +80,7 @@ public class LibraryController {
 
     /**
      * Remove all books with the given title.
-     * @param query the title of the books to be removed
+     * @param query The title of the books to be removed.
      */
     @DeleteMapping("/books/delete/title")
     public void removeBookByTitle(@RequestParam String query){
@@ -86,7 +90,7 @@ public class LibraryController {
 
     /**
      * Remove all books of the given author.
-     * @param query the author of the books to be removed
+     * @param query The author of the books to be removed.
      */
     @DeleteMapping("/books/delete/author")
     public void removeBookByAuthor(@RequestParam String query){
@@ -94,12 +98,22 @@ public class LibraryController {
 
     }
 
+    /**
+     * Borrow a book from the library.
+     * @param query The ID of the book to be borrowed.
+     * @return If borrowing is successful, 200 OK status with success message is returned. Otherwise 400 BAD REQUEST with error message is returned.
+     */
     @PatchMapping("/books/borrow/id")
     public ResponseEntity<Object> borrowBookById(@RequestParam Long query){
         libraryService.borrowBookById(query);
         return ResponseEntity.ok(String.format("Book with ID %d borrowed successfully!", query));
     }
 
+    /**
+     * Return a book to the library.
+     * @param query The ID of the book to be returned.
+     * @return If the book return is successful, 200 OK Status code is returned with success message. Otherwise 400 BAD REQUEST with error message is returned.
+     */
     @PatchMapping("/books/return/id")
     public ResponseEntity<Object> returnBookById(@RequestParam Long query){
         libraryService.returnBookById(query);

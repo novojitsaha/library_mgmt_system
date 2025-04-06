@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
+
 @OpenAPIDefinition(
 		info = @Info(
 				title = "Library Management API",
@@ -14,6 +16,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class LibraryApplication {
 
+	/**
+	 * Entry point of the application
+	 * @param args Main function arguments.
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(LibraryApplication.class, args);
 	}
