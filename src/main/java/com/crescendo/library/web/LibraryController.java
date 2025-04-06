@@ -76,13 +76,43 @@ public class LibraryController {
 
     /**
      * Remove a book by its ID.
-     * @param id the ID of the book to be removed
+     * @param query the ID of the book to be removed
      */
     @DeleteMapping("/books/delete/id")
-    public void removeBookById(@RequestParam Long id){
-        libraryService.removeBookById(id);
+    public void removeBookById(@RequestParam Long query){
+        libraryService.removeBookById(query);
 
     }
+
+    /**
+     * Remove all books with the given title.
+     * @param query the title of the books to be removed
+     */
+    @DeleteMapping("/books/delete/title")
+    public void removeBookByTitle(@RequestParam String query){
+        libraryService.removeBookByTitle(query);
+
+    }
+
+    /**
+     * Remove all books of the given author.
+     * @param query the author of the books to be removed
+     */
+    @DeleteMapping("/books/delete/author")
+    public void removeBookByAuthor(@RequestParam String query){
+        libraryService.removeBookByAuthor(query);
+
+    }
+
+    @PatchMapping("/books/borrow/id")
+    public ResponseEntity<Object> borrowBookById(@RequestParam Long query){
+        libraryService.borrowById(query);
+        return ResponseEntity.ok(String.format("Book with ID %d borrowed successfully!", query));
+    }
+
+
+
+
 
 
 
