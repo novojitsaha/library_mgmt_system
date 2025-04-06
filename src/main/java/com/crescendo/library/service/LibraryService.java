@@ -2,6 +2,7 @@ package com.crescendo.library.service;
 
 import com.crescendo.library.exception.BookNotFoundException;
 import com.crescendo.library.exception.InvalidBorrowRequestException;
+import com.crescendo.library.exception.InvalidReturnRequestException;
 import com.crescendo.library.exception.SearchTypes;
 import com.crescendo.library.model.Book;
 import com.crescendo.library.repository.BookRepository;
@@ -67,7 +68,7 @@ public class LibraryService {
     }
 
 
-    public void borrowById(Long query) {
+    public void borrowBookById(Long query) {
         Book book = bookRepository.findById(query).orElseThrow(() -> new BookNotFoundException(SearchTypes.ID, query));
 
         if(!book.getIsAvailable()){
@@ -77,5 +78,16 @@ public class LibraryService {
             bookRepository.save(book);
         }
 
+    }
+
+    public void returnBookById(Long query) {
+        Book book = bookRepository.findById(query).orElseThrow(() -> new BookNotFoundException(SearchTypes.ID, query));
+
+        if(book.getIsAvailable()){
+            throw new InvalidReturnRequestException(book.getId());
+        } else {
+            book.setIsAvailable(true);
+            bookRepository.save(book);
+        }
     }
 }

@@ -106,14 +106,15 @@ public class LibraryController {
 
     @PatchMapping("/books/borrow/id")
     public ResponseEntity<Object> borrowBookById(@RequestParam Long query){
-        libraryService.borrowById(query);
+        libraryService.borrowBookById(query);
         return ResponseEntity.ok(String.format("Book with ID %d borrowed successfully!", query));
     }
 
-
-
-
-
+    @PatchMapping("/books/return/id")
+    public ResponseEntity<Object> returnBookById(@RequestParam Long query){
+        libraryService.returnBookById(query);
+        return ResponseEntity.ok(String.format("Book with ID %d returned successfully!", query));
+    }
 
 
 }
