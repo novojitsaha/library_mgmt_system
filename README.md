@@ -32,4 +32,4 @@ This project requires simple database queries and therefore H2 database was deem
 A controller-service-repository pattern is used to keep the codebase clean and maintainable. All the API endpoints are defined in the ```LibraryController``` Class, while ```LibraryService``` Class handles the business logic and ```BookRepository``` Class integrates the H2 database.
 
 #### Example BookNotFoundException Sequence Diagram
-<img src="docs/BookNotFoundException_SequenceDiagram.jpg" alt="Screenshot" style="width: 50%; height: auto;"/>
+<img src="docs/BookNotFoundException_ExampleSequenceDiagram.jpg" alt="Screenshot" style="width: 50%; height: auto;"/>
