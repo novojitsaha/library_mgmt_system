@@ -15,9 +15,13 @@ Java + Spring Boot + Maven + H2 database
 - Run the application with ```java -jar library-0.0.1-SNAPSHOT.jar```.
 
 ### Swagger API Endpoints Documentaion 
+<img src="docs/swagger_screenshot.png" alt="Screenshot" style="width: 50%; height: auto;"/>
+
 To view Swagger UI for API Documentation, visit ```localhost:8080/swagger.html``` (unless you are hosting on a different port).
 
 ### Javadocs
+
+
 To view the Javadocs, open the ```index.html``` file located at ```./target/reports/apidocs``` in your favourite browser. 
 
 ### Database
