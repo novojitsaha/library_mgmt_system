@@ -20,4 +20,6 @@ To view Swagger UI for API Documentation, visit ```localhost:8080/swagger.html``
 ### Javadocs
 To view the Javadocs, open the ```index.html``` file located at ```./target/reports/apidocs``` in your favourite browser. 
 
+### Database
+The application will save the data in your home folder in a file called ```library_db```. This ensures that data persists between application restarts. If you'd like to change the location where data is saved, please change the value of ```spring.datasource.url``` in the ```application.properties``` file located at ```src/main/resources/application.properties```.
 
