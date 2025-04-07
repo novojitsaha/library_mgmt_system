@@ -25,5 +25,10 @@ Javadocs for this project is live at [https://novojitsaha.github.io/library_mgmt
 You can also view the javadocs locally by opening ```./docs/apidocs/index.html``` in your favourite browser. 
 
 ### Database
-The application will save the data in your home folder in a file called ```library_db```. This ensures that data persists between application restarts. If you'd like to change the location where data is saved, please change the value of ```spring.datasource.url``` in the ```application.properties``` file located at ```src/main/resources/application.properties```.
+The application will save the data in your home folder in a file called ```library_db```. This ensures that data persists between application restarts. If you'd like to change the location where data is saved, please change the value of ```spring.datasource.url``` located in ```src/main/resources/application.properties```.
+This project requires simple database queries and therefore H2 database was deemed appropriate for its use case. Since it’s an embedded database, no external database server needs to be set up. 
+
+### Design Patterns
+A controller-service-repository pattern is used to keep the codebase clean and maintainable. All the API endpoints are defined in the ```LibraryController``` Class, while ```LibraryService``` Class handles the business logic and ```BookRepository``` Class integrates the H2 database.
+
 
