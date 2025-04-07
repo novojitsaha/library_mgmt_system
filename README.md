@@ -15,7 +15,7 @@ Java + Spring Boot + Maven + H2 database
 - Run the application with ```java -jar library-0.0.1-SNAPSHOT.jar```.
 
 ### Swagger API Endpoints Documentaion 
-<img src="docs/swagger_screenshot.png" alt="Screenshot" style="width: 50%; height: auto;"/>
+<img src="docs/swagger_screenshot_2.png" alt="Screenshot" style="width: 50%; height: auto;"/>
 
 To view Swagger UI for API Documentation, visit ```localhost:8080/swagger.html``` (unless you are hosting on a different port).
 
