@@ -1,0 +1,7 @@
+com.crescendo.library
+com.crescendo.library.dto
+com.crescendo.library.exception
+com.crescendo.library.model
+com.crescendo.library.repository
+com.crescendo.library.service
+com.crescendo.library.web
