@@ -33,3 +33,8 @@ A controller-service-repository pattern is used to keep the codebase clean and m
 
 #### Example BookNotFoundException Sequence Diagram
 <img src="docs/BookNotFoundException_ExampleSequenceDiagram.jpg" alt="Screenshot" style="width: 50%; height: auto;"/>
+
+### Future Improvements
+
+- [ ] Increase test coverage, both unit tests and integration tests.
+- [ ] Improve search API endpoint with query parameters. E.g. Instead of having multiple endpoints for each search type like ```/books/search/id``` and `/books/search/title`, make one search endpoint where the query variable will dictate the search type, i.e. `/books/search?id=x` and `/books/search?title=y`.
